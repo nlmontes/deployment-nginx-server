@@ -24,7 +24,7 @@ instance_groups:
   - name: default
   jobs:
   - name: nginx-server
-    release: nginx-server
+    release: nginx
     properties:
       nginx_conf: |
         user nobody vcap; # group vcap can read most directories
