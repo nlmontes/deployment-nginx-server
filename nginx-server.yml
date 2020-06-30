@@ -2,22 +2,10 @@
 name: nginx-server
 
 releases:
-- name: bpm
-  sha1: 0f2efdad0e9702faa23ead010c1b866f985ba537
-  url: https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-1.1.8-ubuntu-xenial-621.76-20200616-225534-615382607-20200616225536.tgz
-  version: 1.1.8
 - name: "nginx"
   version: "1.19.0"
   url: "https://bosh.io/d/github.com/cloudfoundry-community/nginx-release?v=1.19.0"
   sha1: "afd029140755ba4a9314299c84d4a5f133adca36"
-- name: "haproxy"
-  version: "10.1.0"
-  url: "https://bosh.io/d/github.com/cloudfoundry-community/haproxy-boshrelease?v=10.1.0"
-  sha1: "5258d6a8e5aa164b8154a24e0e6db6373755e4fb"
-- name: "garden-runc"
-  version: "1.15.1"
-  url: "https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=1.15.1"
-  sha1: "bdac2dc7debc2e9b4b9e32f009cb93ac281e5480"
 
 stemcells:
 # Centos 3421.11 _appears_ not to work under BOSH Lite
@@ -26,27 +14,6 @@ stemcells:
   version: latest
 
 instance_groups:
-- name: haproxy
-  azs: [z1]
-  instances: 1
-  vm_type: default
-  stemcell: ubuntu
-  networks: [{name: default}]
-  jobs:
-  - name: haproxy
-    release: haproxy
-    properties:
-      ha_proxy:
-        backend_port: 80
-        backend_servers: [10.244.0.2,10.244.0.3]
-  - release: garden-runc
-    name: garden
-    properties:
-      garden:
-        listen_network: tcp
-        listen_address: 0.0.0.0:7777
-        allow_host_access: true
-  
 - name: nginx-server
   instances: 2
   azs: [z1]
