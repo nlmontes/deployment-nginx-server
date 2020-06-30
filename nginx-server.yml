@@ -56,7 +56,7 @@ instance_groups:
   networks:
   - name: default
   jobs:
-  - name: nginx-server
+  - name: nginx
     release: nginx
     properties:
       nginx_conf: |
