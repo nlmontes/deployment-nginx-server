@@ -29,6 +29,9 @@ instance_groups:
     release: haproxy
   - name: keepalived
     release: haproxy
+    properties:
+      keepalived:
+        vip: 192.168.192.200
   
 - name: nginx-server
   instances: 2
