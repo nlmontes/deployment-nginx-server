@@ -15,7 +15,7 @@ stemcells:
 
 instance_groups:
 - name: nginx-server
-  instances: 3
+  instances: 1
   azs: [z1]
   vm_type: default
   persistent_disk_type: default
